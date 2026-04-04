@@ -181,14 +181,13 @@ body::before {
   right: 0;
   z-index: 100;
   padding: 1rem 0;
-  transition: background-color 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
+  background-color: var(--color-ink);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s ease, padding 0.4s ease;
 }
 .nav.scrolled {
-  background-color: rgba(12, 10, 7, 0.94);
   border-bottom: 1px solid var(--color-border);
   padding: 0.75rem 0;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 /* Top bar — always logo on left, button on right */
@@ -479,8 +478,12 @@ body::before {
   letter-spacing: -0.02em;
   color: var(--color-cream);
   margin: 0;
-  position: sticky;
-  top: 7rem;
+}
+@media (min-width: 900px) {
+  .problem-headline {
+    position: sticky;
+    top: 7rem;
+  }
 }
 .problem-body p {
   font-size: 1.0625rem;
