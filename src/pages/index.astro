@@ -1,0 +1,372 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <!-- Background image with overlay -->
+    <div class="hero-bg">
+      <img
+        src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1800&auto=format&fit=crop&q=80"
+        alt="Newspapers"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">Personalized News Intelligence</div>
+
+        <h1 class="hero-headline reveal reveal-delay-1">
+          The news happened.<br />But what does it<br />mean for <em>you?</em>
+        </h1>
+
+        <p class="hero-sub reveal reveal-delay-2">
+          knudge is a daily brief built around your life — your job, your city,
+          your industry, your finances. Not what's trending. What's relevant.
+        </p>
+
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#early-access" class="btn-primary">
+            Join early access
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <a href="/blog" class="btn-outline">Read the journal</a>
+        </div>
+
+        <p class="hero-note reveal reveal-delay-4">
+          Free during early access. No spam. Leave anytime.
+        </p>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── TICKER ───────────────────────────────────────────────── -->
+  <div class="ticker-wrap">
+    <div class="ticker-track" aria-hidden="true">
+      {
+        [
+          "Your job. Your city. Your industry.",
+          "Not what's trending — what's relevant",
+          "India-first. Vernacular-aware.",
+          "Impact, not events",
+          "Built around your life",
+          "A brief that knows who you are",
+          "Your job. Your city. Your industry.",
+          "Not what's trending — what's relevant",
+          "India-first. Vernacular-aware.",
+          "Impact, not events",
+          "Built around your life",
+          "A brief that knows who you are",
+        ].map((item) => (
+          <span class="ticker-item">{item}</span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM ───────────────────────────────────────────────── -->
+  <section class="problem-section">
+    <div class="container">
+      <div class="section-label reveal">The Problem</div>
+
+      <div class="problem-grid">
+        <!-- Left: sticky headline -->
+        <h2 class="problem-headline reveal">
+          You read the news. You still don't know what to do about it.
+        </h2>
+
+        <!-- Right: body -->
+        <div>
+          <div class="problem-body reveal reveal-delay-1">
+            <p>
+              Most news is written for everyone, which means it's written for no
+              one in particular. You read that interest rates changed. That a new
+              policy passed. That a sector is consolidating.
+            </p>
+            <p>
+              You understand what happened. But you have no idea whether it
+              affects <em>you</em> — and if it does, how. That gap between
+              knowing and acting is where knudge lives.
+            </p>
+            <p>
+              Interest-based filters give you more of what you already read.
+              knudge gives you what you need to know based on who you actually
+              are.
+            </p>
+          </div>
+
+          <div class="problem-image-wrapper reveal reveal-delay-2">
+            <img
+              src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&auto=format&fit=crop&q=80"
+              alt="Scrolling through news on a phone"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHAT IT IS ────────────────────────────────────────────── -->
+  <section class="what-section">
+    <div class="container">
+      <div class="section-label reveal">What It Is</div>
+
+      <h2 class="what-headline reveal">A brief that knows who you are.</h2>
+
+      <p class="what-sub reveal reveal-delay-1">
+        You tell knudge about your life. Once a day, knudge reads the news and
+        sends you exactly what it means for your specific situation. Not more
+        headlines. Not better summaries. <strong style="color: var(--color-cream);">Impact.</strong>
+      </p>
+
+      <div class="what-cards">
+        <!-- Card 1 -->
+        <div class="what-card reveal reveal-delay-1">
+          <div class="what-card-num">01</div>
+          <h3>Your profile,<br />not your interests</h3>
+          <p>
+            Interest-based filters give you more of what you already read. knudge
+            gives you what you need to know based on who you actually are — your
+            job, city, financial context, goals.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="what-card reveal reveal-delay-2">
+          <div class="what-card-num">02</div>
+          <h3>Impact,<br />not events</h3>
+          <p>
+            Every brief answers one question: so what? Not what happened — what
+            it means for you, right now, given your specific circumstances.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="what-card reveal reveal-delay-3">
+          <div class="what-card-num">03</div>
+          <h3>India-first.<br />Vernacular-aware.</h3>
+          <p>
+            Regional Indian news, in languages you may not read, translated and
+            filtered for what matters to someone like you. Not just English-language
+            global media.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ──────────────────────────────────────────── -->
+  <section class="how-section">
+    <div class="container">
+      <div class="section-label reveal">How It Works</div>
+
+      <div class="how-header">
+        <h2 class="how-headline reveal">Three steps.<br />One daily brief.</h2>
+        <p class="how-sub reveal reveal-delay-1">
+          Built around your life, not around a topic feed. The more specific your
+          profile, the sharper the brief.
+        </p>
+      </div>
+
+      <div class="how-steps">
+        <!-- Step 1 -->
+        <div class="how-step reveal">
+          <div class="how-step-num">01</div>
+          <div>
+            <h3 class="how-step-title">Tell us about your life</h3>
+            <p class="how-step-body">
+              Your job, city, industry, financial context, goals, dependents.
+              Takes five minutes. Stays private.
+            </p>
+          </div>
+          <p class="how-step-detail">
+            This isn't a preference quiz. The more specific and honest your profile,
+            the better knudge can map the news to what actually affects your life —
+            not just what sounds interesting.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-step reveal">
+          <div class="how-step-num">02</div>
+          <div>
+            <h3 class="how-step-title">We read everything</h3>
+            <p class="how-step-body">
+              English media, regional sources, vernacular news — translated and
+              processed through AI before reaching you.
+            </p>
+          </div>
+          <p class="how-step-detail">
+            knudge pulls from national and regional Indian outlets — in Hindi,
+            Marathi, Tamil, Telugu, and more. You get the full picture, not just
+            what English-language media chose to cover.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-step reveal">
+          <div class="how-step-num">03</div>
+          <div>
+            <h3 class="how-step-title">You get a brief that matters</h3>
+            <p class="how-step-body">
+              Once a day. Specific to you. Explains impact, not just events.
+              Delivered where you already are.
+            </p>
+          </div>
+          <p class="how-step-detail">
+            No app downloads during early access. The brief arrives in your inbox
+            or broadcast group. Read it in under five minutes and know exactly
+            what moved today and why you should care.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INDIA FIRST ───────────────────────────────────────────── -->
+  <section class="india-section">
+    <div class="container">
+      <div class="section-label reveal">India First</div>
+
+      <div class="india-grid">
+        <!-- Image -->
+        <div class="india-image-wrapper reveal">
+          <img
+            src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=900&auto=format&fit=crop&q=80"
+            alt="India city at dusk"
+            loading="lazy"
+          />
+          <p class="india-image-caption">The news that shapes your life is rarely just what makes the front page.</p>
+        </div>
+
+        <!-- Text -->
+        <div class="india-body">
+          <h2 class="india-headline reveal">
+            Most news products were built for someone else.
+          </h2>
+          <div class="reveal reveal-delay-1">
+            <p>
+              The dominant news infrastructure was designed for English-language,
+              globally mobile readers. If you're a professional in Pune, an
+              entrepreneur in Coimbatore, or a family navigating life in Lucknow
+              — you're an afterthought in most news products.
+            </p>
+            <p>
+              knudge is being built from India outward. Regional vernacular
+              sources aren't an add-on. They're part of the core pipeline — because
+              the news that actually affects your life is often written in a
+              language the global press never covers.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="india-stat reveal reveal-delay-2">
+            <div class="india-stat-item">
+              <div class="india-stat-num">22+</div>
+              <div class="india-stat-label">Regional languages targeted</div>
+            </div>
+            <div class="india-stat-item">
+              <div class="india-stat-num">1B+</div>
+              <div class="india-stat-label">People underserved by English-only news</div>
+            </div>
+            <div class="india-stat-item">
+              <div class="india-stat-num">0</div>
+              <div class="india-stat-label">Products that translate news into your life</div>
+            </div>
+            <div class="india-stat-item">
+              <div class="india-stat-num">1</div>
+              <div class="india-stat-label">That's what we're building</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EARLY ACCESS ──────────────────────────────────────────── -->
+  <section class="early-section" id="early-access">
+    <div class="container">
+      <div class="section-label reveal">Early Access</div>
+
+      <div class="early-inner">
+        <h2 class="early-headline reveal">
+          We're building this<br />
+          <em>in the open.</em>
+        </h2>
+
+        <p class="early-body reveal reveal-delay-1">
+          knudge is in early development. Before we build the full product,
+          we're sending briefs to a small group of real people and watching what
+          changes for them. If you want in — join the broadcast group. You'll get
+          early briefs, behind-the-scenes updates, and a direct line to give
+          feedback that actually shapes the product.
+        </p>
+
+        <div class="early-actions reveal reveal-delay-2">
+          <a
+            href="https://t.me/YOUR_TELEGRAM_LINK"
+            target="_blank"
+            rel="noopener"
+            class="btn-telegram"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"
+              ></path>
+            </svg>
+            Join on Telegram
+          </a>
+          <a
+            href="https://wa.me/YOUR_WHATSAPP_LINK"
+            target="_blank"
+            rel="noopener"
+            class="btn-whatsapp"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+              ></path>
+            </svg>
+            Join on WhatsApp
+          </a>
+        </div>
+
+        <p class="early-lwa reveal reveal-delay-3">
+          Early access is free. We'll let you know when that changes. Follow the
+          build in real time on{" "}
+          <a
+            href="https://www.instagram.com/lifewithanugrah"
+            target="_blank"
+            rel="noopener"
+          >
+            @lifewithanugrah
+          </a>
+          .
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero image Ken Burns effect */
+  .hero-bg img {
+    animation: kenBurns 12s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1.04) translate(0, 0); }
+    to   { transform: scale(1.12) translate(-1%, -0.5%); }
+  }
+</style>
