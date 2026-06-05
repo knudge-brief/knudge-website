@@ -1,6 +1,4 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-
 interface Frontmatter {
   title: string;
   description: string;
@@ -16,79 +14,277 @@ const other =
   kind === "privacy"
     ? { href: "/terms", label: "Terms of Use" }
     : { href: "/privacy", label: "Privacy Policy" };
+
+const year = new Date().getFullYear();
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://knudge.in");
 ---
 
-<BaseLayout title={`${title} — knudge`} description={description}>
-  <article class="post-page legal-page">
-    <div class="container">
-      <a href="/" class="post-back">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-        >
-          <path d="M9 2L4 7l5 5" stroke-linecap="round" stroke-linejoin="round"
-          ></path>
-        </svg>
-        Back to home
-      </a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Knudge</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
 
-      <header class="post-header">
-        <div class="post-meta">
-          <span>Effective {effective}</span>
-          <span class="post-meta-sep"></span>
-          <span>Last updated {updated}</span>
-        </div>
-        <h1 class="post-title">{title}</h1>
-      </header>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={`${title} — Knudge`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/logo_knudge.png" />
+    <meta name="twitter:card" content="summary" />
 
-      <div class="post-body">
-        <div class="prose legal-prose">
-          <slot />
-        </div>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-        <div class="legal-footer-note">
-          <p>
-            See also our <a href={other.href}>{other.label}</a>. Questions?
-            Email <a href="mailto:support@knudge.in">support@knudge.in</a>.
-          </p>
-        </div>
+  <body>
+    <header class="legal-masthead">
+      <div class="legal-shell legal-masthead-inner">
+        <a href="/" aria-label="Knudge home">
+          <img src="/logo_knudge.png" alt="Knudge" class="legal-logo" />
+        </a>
+        <a href="/" class="legal-home-link">← Home</a>
       </div>
-    </div>
-  </article>
-</BaseLayout>
+    </header>
 
-<style>
-  /* Tighter heading rhythm for long legal documents */
-  .legal-prose :global(h2) {
-    margin-top: 3.5rem;
-    padding-top: 0.25rem;
-    font-size: 1.625rem;
-  }
-  .legal-prose :global(h3) {
-    margin-top: 2rem;
-    font-size: 1.1875rem;
-  }
-  .legal-prose :global(ul) {
-    margin-top: 1rem;
-  }
-  .legal-footer-note {
-    max-width: 720px;
-    margin: 4rem auto 0;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
-    font-size: 0.9375rem;
-    color: var(--color-muted);
-  }
-  .legal-footer-note a {
-    color: var(--color-gold);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-gold-dim);
-  }
-  .legal-footer-note a:hover {
-    border-color: var(--color-gold);
-  }
-</style>
+    <main class="legal-shell legal-doc">
+      <p class="legal-kicker">Legal</p>
+      <h1 class="legal-title">{title}</h1>
+      <p class="legal-meta">Effective {effective} &nbsp;·&nbsp; Last updated {updated}</p>
+
+      <div class="legal-body">
+        <slot />
+      </div>
+
+      <footer class="legal-doc-foot">
+        <a href={other.href}>{other.label}</a>
+        <a href="mailto:support@knudge.in">support@knudge.in</a>
+        <a href="/">knudge.in</a>
+        <span class="legal-copy">© {year} Knudge</span>
+      </footer>
+    </main>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #1a1a18;
+        --paper: #f5f2ec;
+        --rule: #d6d0c4;
+        --accent: #c8392b;
+        --muted: #7a7668;
+        --highlight: #ede8df;
+        --body-text: #2c2a25;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "DM Sans", system-ui, sans-serif;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Centered reading column, shared by masthead + doc */
+      .legal-shell {
+        width: 100%;
+        max-width: 760px;
+        margin: 0 auto;
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      /* ── Masthead (logo only — no nav) ── */
+      .legal-masthead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: var(--paper);
+        border-bottom: 2.5px solid var(--ink);
+      }
+      .legal-masthead-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        padding-bottom: 12px;
+      }
+      .legal-logo {
+        height: 30px;
+        width: auto;
+        display: block;
+      }
+      .legal-home-link {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.18s ease;
+      }
+      .legal-home-link:hover {
+        color: var(--accent);
+      }
+
+      /* ── Document header ── */
+      .legal-doc {
+        padding-top: 44px;
+        padding-bottom: 80px;
+      }
+      .legal-kicker {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .legal-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 600;
+        font-size: clamp(32px, 6vw, 50px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+      }
+      .legal-meta {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+        padding-bottom: 26px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      /* ── Rendered markdown body ── */
+      .legal-body {
+        font-size: 16px;
+      }
+      .legal-body h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin-top: 46px;
+        margin-bottom: 14px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+      }
+      .legal-body h3 {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.35;
+        color: var(--ink);
+        margin-top: 30px;
+        margin-bottom: 10px;
+      }
+      .legal-body p {
+        color: var(--body-text);
+        margin-bottom: 16px;
+      }
+      .legal-body ul {
+        margin: 4px 0 18px;
+        padding-left: 20px;
+      }
+      .legal-body li {
+        color: var(--body-text);
+        line-height: 1.6;
+        margin-bottom: 9px;
+        padding-left: 4px;
+      }
+      .legal-body li::marker {
+        color: var(--accent);
+      }
+      .legal-body strong {
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .legal-body em {
+        color: var(--muted);
+      }
+      .legal-body a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-thickness: 1px;
+      }
+      .legal-body a:hover {
+        opacity: 0.8;
+      }
+
+      /* ── Footer strip ── */
+      .legal-doc-foot {
+        margin-top: 56px;
+        padding-top: 22px;
+        border-top: 2.5px solid var(--ink);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 20px;
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.03em;
+      }
+      .legal-doc-foot a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 1px;
+        transition: color 0.18s ease, border-color 0.18s ease;
+      }
+      .legal-doc-foot a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .legal-copy {
+        color: var(--muted);
+        margin-left: auto;
+      }
+
+      @media (min-width: 720px) {
+        .legal-logo {
+          height: 36px;
+        }
+        .legal-masthead-inner {
+          padding-top: 18px;
+          padding-bottom: 16px;
+        }
+        .legal-doc {
+          padding-top: 56px;
+        }
+        .legal-body {
+          font-size: 17px;
+        }
+        .legal-body h2 {
+          font-size: 30px;
+        }
+        .legal-body h3 {
+          font-size: 19px;
+        }
+      }
+    </style>
+  </body>
+</html>
