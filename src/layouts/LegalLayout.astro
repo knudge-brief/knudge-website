@@ -1,0 +1,94 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  effective: string;
+  updated: string;
+  kind: "privacy" | "terms";
+}
+
+const { frontmatter } = Astro.props as { frontmatter: Frontmatter };
+const { title, description, effective, updated, kind } = frontmatter;
+
+const other =
+  kind === "privacy"
+    ? { href: "/terms", label: "Terms of Use" }
+    : { href: "/privacy", label: "Privacy Policy" };
+---
+
+<BaseLayout title={`${title} — knudge`} description={description}>
+  <article class="post-page legal-page">
+    <div class="container">
+      <a href="/" class="post-back">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M9 2L4 7l5 5" stroke-linecap="round" stroke-linejoin="round"
+          ></path>
+        </svg>
+        Back to home
+      </a>
+
+      <header class="post-header">
+        <div class="post-meta">
+          <span>Effective {effective}</span>
+          <span class="post-meta-sep"></span>
+          <span>Last updated {updated}</span>
+        </div>
+        <h1 class="post-title">{title}</h1>
+      </header>
+
+      <div class="post-body">
+        <div class="prose legal-prose">
+          <slot />
+        </div>
+
+        <div class="legal-footer-note">
+          <p>
+            See also our <a href={other.href}>{other.label}</a>. Questions?
+            Email <a href="mailto:support@knudge.in">support@knudge.in</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Tighter heading rhythm for long legal documents */
+  .legal-prose :global(h2) {
+    margin-top: 3.5rem;
+    padding-top: 0.25rem;
+    font-size: 1.625rem;
+  }
+  .legal-prose :global(h3) {
+    margin-top: 2rem;
+    font-size: 1.1875rem;
+  }
+  .legal-prose :global(ul) {
+    margin-top: 1rem;
+  }
+  .legal-footer-note {
+    max-width: 720px;
+    margin: 4rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+  }
+  .legal-footer-note a {
+    color: var(--color-gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-gold-dim);
+  }
+  .legal-footer-note a:hover {
+    border-color: var(--color-gold);
+  }
+</style>
